@@ -30,20 +30,25 @@ function App() {
 
     const method = {
       method: "POST",
-      body: JSON.stringify(newObj),
-      header: {
-        "content-Type": "application/json"
-      }
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newObj)
     }
 
-    fetch("http://localhost:3002/new-album", method)
-      .then((res)=> res.json())
-      .then((data) => {
-        setBandInput("")
-        setAlbumTitleInput("")
-        setAlbumYearInput("")
-      })
+    fetch("http://localhost:3000/new-album", method)
+      .then(res=> res.json())
+      .then(data => {
 
+        console.log("Success:", data)
+
+        setBandInput("");
+        setAlbumTitleInput("");
+        setAlbumYearInput("");
+      })
+      .catch(err => {
+        console.error("Error:", err)
+      })
   }
 
   return (

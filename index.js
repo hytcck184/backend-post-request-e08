@@ -24,10 +24,11 @@ app.post("/new-album", (req,res) => {
     }
 
     albums.push(addId)
+    console.log("Successful!")
 
     res.status(201).json(addId)
 })
 
-app.listen(3002, () => {
-    console.log("Server is running on PORT 3002")
+app.listen(3000, () => {
+    console.log("Server is running on PORT 3000")
 })
