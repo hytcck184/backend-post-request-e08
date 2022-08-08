@@ -1,5 +1,4 @@
-import './App.css';
-import React, {useState} from "react"
+import React, {useEffect, useState} from "react"
 
 
 function App() {
@@ -7,6 +6,11 @@ function App() {
   const [bandInput, setBandInput ]= useState("")
   const [albumTitleInput, setAlbumTitleInput] = useState("")
   const [albumYearInput, setAlbumYearInput] = useState("")
+  const [albums, setAlbums] = useState([])
+
+  useEffect(()=> {
+    console.log("Added input!", albums)
+  }, [albums])
 
   const changeInput = (event) => {
 
@@ -42,9 +46,12 @@ function App() {
 
         console.log("Success:", data)
 
+        setAlbums(data)
+
         setBandInput("");
         setAlbumTitleInput("");
         setAlbumYearInput("");
+
       })
       .catch(err => {
         console.error("Error:", err)
@@ -70,6 +77,15 @@ function App() {
         </div>
         <button>Add Album</button>
       </form>
+
+      <div>
+        <h2>Current Albums</h2>
+        <ul>
+          {albums.map(data => {
+            return <li>{data.albumTitle} by {data.band} ({data.albumYear})</li>
+          })}
+        </ul>
+      </div>
     </div>
   );
 }
