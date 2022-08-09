@@ -46,7 +46,7 @@ function App() {
 
         console.log("Success:", data)
 
-        setAlbums(data)
+        setAlbums([data])
 
         setBandInput("");
         setAlbumTitleInput("");
